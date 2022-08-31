@@ -1,6 +1,6 @@
 import { Typography, Box, makeStyles, Grid, TextField, Button } from "@material-ui/core"
 import { deepPurple, green } from '@material-ui/core/colors';
-import List from "../student/List";
+import List from "../blog/List";
 import axios from "axios";
 import { useState } from "react";
 const useStyles = makeStyles({
@@ -16,15 +16,15 @@ const useStyles = makeStyles({
 
 const Home = () => {
  const classes = useStyles();
- const [student, setStudent] = useState({
-  stuname: "",
-  email: ""
+ const [blog, setBlog] = useState({
+  title: "",
+  details: ""
  });
  const [status, setStatus] = useState();
 
  function onTextFieldChange(e) {
-  setStudent({
-   ...student,
+  setBlog({
+   ...blog,
    [e.target.name]: e.target.value
   })
  }
@@ -32,7 +32,7 @@ const Home = () => {
  async function onFormSubmit(e) {
   e.preventDefault()
   try {
-   await axios.post(`http://localhost:3333/students`, student)
+   await axios.post(`http://localhost:3333/blogs`, blog)
    setStatus(true);
   } catch (error) {
    console.log("Something is Wrong");
@@ -44,21 +44,24 @@ const Home = () => {
  return (
   <>
    <Box textAlign="center" className={classes.headingColor} p={2} mb={2}>
-    <Typography variant="h2">React CRUD with API Call</Typography>
+    <Typography variant="h2">Blogs</Typography>
    </Box>
    <Grid container justify="center" spacing={4}>
     <Grid item md={6} xs={12}>
      <Box textAlign="center" p={2} className={classes.addStuColor} mb={2}>
-      <Typography variant="h4">Add Student</Typography>
+      <Typography variant="h4">Add Blogs</Typography>
      </Box>
      <form noValidate>
       <Grid container spacing={2}>
        <Grid item xs={12}>
-        <TextField autoComplete="stuname" name="stuname" variant="outlined" required fullWidth id="stuname" label="Name" onChange={e => onTextFieldChange(e)}
+        <TextField  name="title" variant="outlined" required fullWidth id="title" label="Title" onChange={e => onTextFieldChange(e)}
         />
        </Grid>
+
+
+
        <Grid item xs={12}>
-        <TextField autoComplete="email" name="email" variant="outlined" required fullWidth id="email" label="Email Address" onChange={e => onTextFieldChange(e)} />
+        <TextField autoComplete="details" name="details" variant="outlined" required fullWidth id="details" label="Details " onChange={e => onTextFieldChange(e)} />
        </Grid>
       </Grid>
       <Box m={3}>

@@ -17,19 +17,19 @@ const useStyles = makeStyles({
 const View = () => {
  const classes = useStyles();
  const { id } = useParams();
- const [student, setStudent] = useState([]);
+ const [blog, setblog] = useState([]);
  const history = useHistory();
  useEffect(() => {
-  async function getStudent() {
+  async function getblog() {
    try {
-    const student = await axios.get(`http://localhost:3333/students/${id}`)
-    // console.log(student.data);
-    setStudent(student.data);
+    const blog = await axios.get(`http://localhost:3333/blogs/${id}`)
+    // console.log(blog.data);
+    setblog(blog.data);
    } catch (error) {
     console.log("Something is Wrong");
    }
   }
-  getStudent();
+  getblog();
  }, [id])
 
  function handleClick() {
@@ -38,7 +38,7 @@ const View = () => {
  return (
   <>
    <Box textAlign="center" p={2} className={classes.stuListColor}>
-    <Typography variant="h4">Student Detail</Typography>
+    <Typography variant="h4">blog Detail</Typography>
    </Box>
    <TableContainer component={Paper}>
     <Table>
@@ -51,9 +51,9 @@ const View = () => {
      </TableHead>
      <TableBody>
       <TableRow>
-       <TableCell align="center">{student.id}</TableCell>
-       <TableCell align="center">{student.stuname}</TableCell>
-       <TableCell align="center">{student.email}</TableCell>
+       <TableCell align="center">{blog.id}</TableCell>
+       <TableCell align="center">{blog.title}</TableCell>
+       <TableCell align="center">{blog.details}</TableCell>
       </TableRow>
      </TableBody>
     </Table>

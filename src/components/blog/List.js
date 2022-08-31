@@ -20,38 +20,39 @@ const useStyles = makeStyles({
 
 const List = () => {
  const classes = useStyles();
- const [students, setStudents] = useState([]);
+ const [blogs, setblogs] = useState([]);
 
  useEffect(() => {
-  async function getAllStudent() {
+  async function getAllblog() {
    try {
-    const students = await axios.get("http://localhost:3333/students")
-    // console.log(students.data);
-    setStudents(students.data);
+    const blogs = await axios.get("http://localhost:3333/blogs")
+    // console.log(blogs.data);
+    setblogs(blogs.data);
    } catch (error) {
     console.log("Something is Wrong");
    }
   }
-  getAllStudent();
+  getAllblog();
  }, [])
 
  const handleDelete = async id => {
-  await axios.delete(`http://localhost:3333/students/${id}`);
-  var newstudent = students.filter((item) => {
+  await axios.delete(`http://localhost:3333/blogs/${id}`);
+  var newblog = blogs.filter((item) => {
    // console.log(item);
    return item.id !== id;
   })
-  setStudents(newstudent);
+  setblogs(newblog);
  }
 
 
  return (
   <>
    <Box textAlign="center" p={2} className={classes.stuListColor}>
-    <Typography variant="h4">Student List</Typography>
+    <Typography variant="h4">Blogs List</Typography>
    </Box>
    <TableContainer component={Paper}>
-    <Table>
+    {/* <Table> */}
+{/*         
      <TableHead>
       <TableRow style={{ backgroundColor: "#616161" }}>
        <TableCell align="center" className={classes.tableHeadCell}>No</TableCell>
@@ -59,33 +60,38 @@ const List = () => {
        <TableCell align="center" className={classes.tableHeadCell}>Email</TableCell>
        <TableCell align="center" className={classes.tableHeadCell}>Action</TableCell>
       </TableRow>
-     </TableHead>
-     <TableBody>
+     </TableHead> */}
+
+
+     {/* <TableBody> */}
       {
-       students.map((student, i) => {
+       blogs.map((blog, i) => {
         return (
-         <TableRow key={i}>
+         <div key={i}>
           <TableCell align="center">{i + 1}</TableCell>
-          <TableCell align="center">{student.stuname}</TableCell>
-          <TableCell align="center">{student.email}</TableCell>
+          <h2 align="center">{blog.title}</h2>
+          <p align="center">{blog.details}</p>
+
+
           <TableCell align="center">
+
            <Tooltip title="View">
-            <IconButton><Link to={`/view/${student.id}`}><VisibilityIcon color="primary" /></Link></IconButton>
+            <IconButton><Link to={`/view/${blog.id}`}><VisibilityIcon color="primary" /></Link></IconButton>
            </Tooltip>
            <Tooltip title="Edit">
-            <IconButton><Link to={`/edit/${student.id}`}><EditIcon /></Link></IconButton>
+            <IconButton><Link to={`/edit/${blog.id}`}><EditIcon /></Link></IconButton>
            </Tooltip>
            <Tooltip title="Delete">
-            <IconButton onClick={() => handleDelete(student.id)}><DeleteIcon color="secondary" /></IconButton>
+            <IconButton onClick={() => handleDelete(blog.id)}><DeleteIcon color="secondary" /></IconButton>
            </Tooltip>
           </TableCell>
-         </TableRow>
+         </div>
         )
        })
       }
 
-     </TableBody>
-    </Table>
+     {/* </TableBody> */}
+    {/* </Table> */}
    </TableContainer>
   </>
  )

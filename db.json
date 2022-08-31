@@ -1,14 +1,14 @@
 {
-  "students": [
+  "blogs": [
     {
-      "id": 1,
-      "stuname": "Sonam",
-      "email": "sonam@example.com"
+      "title": "dfg",
+      "details": "dfgd",
+      "id": 4
     },
     {
-      "id": 3,
-      "stuname": "Sumit",
-      "email": "sumit@example.com"
+      "title": "dfg6666666",
+      "details": "6666666666hfghf",
+      "id": 5
     }
   ]
 }

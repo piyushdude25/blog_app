@@ -1,7 +1,7 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "./components/pages/Home";
-import View from "./components/student/View";
-import Edit from "./components/student/Edit";
+import View from "./components/blog/View";
+import Edit from "./components/blog/Edit";
 function App() {
   return (
     <>
